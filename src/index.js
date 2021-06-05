@@ -3,30 +3,38 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-const lakeList = [
-  { id: 1, name: "Echo", trialhead: "Echo" },
-  { id: 2, name: "Maud", trialhead: "Writes" },
-  { id: 3, name: "Velma", trialhead: "Bayview" }
-];
-
-
-
-function App({ lakes }) {
+function Lake({ name }) {
   return (
     <div>
-      {lakes.map(lake => (
-        <div key={lake.id}>
-          <h2>{lake.name}</h2>
-          <p>Access: {lake.trialhead}</p>
-        </div>
-      ))}
+      <h1>Visit {name}</h1>
+    </div>
+  )
+}
+
+function SkiResort({ name }) {
+  return (
+    <div>
+      <h1>Visit {name}</h1>
+    </div>
+  )
+}
+
+
+function App(props) {
+
+  return (
+    <div>
+      { props.season === "Summer" ?
+        <Lake name="Jenny Lake" /> : props.season === "Winter" ?
+          <SkiResort name="Jackson Hole Mount" /> :
+          <h1>Come Back another time</h1>
+      }
     </div>
   )
 
 }
 
-
 ReactDOM.render(
-  <App lakes={lakeList} />,
+  <App season="x" />,
   document.getElementById('root')
 );
